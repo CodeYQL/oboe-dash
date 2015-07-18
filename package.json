@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/CodeYQL/oboe-dash.git"
   },
-  "author": "",
+  "author": "Chris Rabl <chris@autovance.com>, Matt Forster <matt@autovance.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CodeYQL/oboe-dash/issues"

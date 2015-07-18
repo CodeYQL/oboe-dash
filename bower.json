@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "homepage": "https://github.com/CodeYQL/oboe-dash",
   "authors": [
-    "Chris Rabl & Matt Forster"
+    "Chris Rabl <chris@autovance.com>",
+    "Matt Forster <matt@autovance.com>"
   ],
   "moduleType": [
     "es6"
