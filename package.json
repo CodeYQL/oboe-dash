@@ -1,0 +1,27 @@
+{
+  "name": "oboe-dash",
+  "version": "1.0.0",
+  "description": "### Setup After cloning the repository, run `npm install` and `bower install`. `gulp serve` starts a development server on port 9000.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeYQL/oboe-dash.git"
+  },
+  "author": "Chris Rabl <chris@autovance.com>, Matt Forster <matt@autovance.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeYQL/oboe-dash/issues"
+  },
+  "homepage": "https://github.com/CodeYQL/oboe-dash#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "wiredep": "^2.2.2"
+  }
+}
