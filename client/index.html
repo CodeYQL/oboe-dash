@@ -2,12 +2,37 @@
 <html>
 <head>
   <title>Hot &amp; Streamy Demo</title>
+  <style type="text/css">
+  .axis path, .axis line {
+      fill: none;
+      stroke: #777;
+      shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: 'Helvetica';
+      font-size: 13px;
+  }
+
+  .tick {
+      stroke-dasharray: 1, 2;
+  }
+
+  .dot {
+    stroke: #000;
+  }
+
+  .bar {
+      fill: FireBrick;
+  }
+
+  </style>
 </head>
 
 <body>
 
   <div id="container">
-    <svg id="main"></svg>
+    <svg id="main" width="500" height="500"></svg>
   </div>
 
   <!-- bower:js -->
