@@ -4,39 +4,59 @@ var server = restify.createServer({
   name: 'Oboe JS Example'
 });
 
+// Quick route to send an sample number of pairs over a period of time
 server.get('/pairs', function (req, res, next) {
+  numSent = 0;
 
+  // Send Header
   res.header('Content-Type', 'application/json');
 
-  function sendPairs(res) {
-    var numPairs = Math.floor(((Math.random()*5)+1));
+  // Write a number of pairs between 1 and 5 to the response
+  // If flag is true, end the communication
+  function sendPairs(res, flag) {
+    var numPairs = Math.floor(((Math.random()*10)%5+1));
     console.log('Number of Pairs: ' + (numPairs+1));
 
     for(var i = 0; i <= numPairs; i++) {
+
+      // Generate the pair
       var pair = [
         Math.floor(((Math.random()*1000)%100)+1),
         Math.floor(((Math.random()*1000)%100)+1)
       ];
 
+      // Write the pair
       console.log(pair);
       res.write(JSON.stringify(pair) + ',');
+      numSent++;
+
+      // End if true
+      if (flag) {
+        res.write('[0,0]]');
+        res.end();
+        console.log('Sent: ' + numSent);
+        return next();
+      }
     }
 
-    return true;
+    // not ending
+    return flag;
   }
 
+  // Start array of pairs
   res.write('[');
 
+  // Queue timeouts
   for(var i = 0; i < 25; i++) {
-    var seconds = Math.floor(((Math.random()*10000)%3000)+1000);
+    var seconds = Math.floor(((Math.random()*10000)%5000)+1000);
     console.log('Waiting: ' + seconds);
 
-    setTimeout(sendPairs(res), seconds);
+    setTimeout(sendPairs, seconds, res, false);
   }
 
-  res.write('[0,0]]');
-  res.end();
-  return next();
+  // Last Pair sent, all others must finish before this to be recieved by client
+  setTimeout(sendPairs, 7000, res, true);
 });
 
+// Start Server
 server.listen(9000);
