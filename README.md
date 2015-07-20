@@ -12,9 +12,10 @@ After cloning the repository, run `npm install` and `bower install`. `gulp serve
 ### Enter Oboe
 - What's in a name? Oboe is a play on the word SAX (Simple API for XML) which is a method for parsing XML documents. SAX was developed as a "streaming" alternative to the DOM (Document Object Model). Where the DOM must be parsed in its entirety before it can be operated on (document.getElementById(), for example), SAX allows us to process nodes as they become available (sequentially).
 - Allows us to use standard XHR (XMLHttpRequest) techniques to stream data over HTTP
-```
-Under asynchronous I/O the programmer’s callback traditionally receives the whole resource and then, inside the callback, locates the sub-parts that are required for a particular task. Inverting this process, the locating logic currently found inside the callback can be extracted, expressed as a selector language, and used to declare the cases in which the callback should be notified. The callback will receive complete fragments from the response once they have been selected according to this declaration.
-```
+
+
+> Under asynchronous I/O the programmer’s callback traditionally receives the whole resource and then, inside the callback, locates the sub-parts that are required for a particular task. Inverting this process, the locating logic currently found inside the callback can be extracted, expressed as a selector language, and used to declare the cases in which the callback should be notified. The callback will receive complete fragments from the response once they have been selected according to this declaration.
+
 
 ### Experiment
 - Using D3, put two charts side by side and load 5000 data points into each, one renders only after all points have been received, the other loads the points as they are being transmitted
