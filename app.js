@@ -6,9 +6,11 @@ var server = restify.createServer({
 
 server.get('/pairs', function (req, res, next) {
 
+  res.header('Content-Type', 'application/json');
+
   function sendPairs(res) {
     var numPairs = Math.floor(((Math.random()*5)+1));
-    console.log('Number of Pairs: ' + numPairs+1);
+    console.log('Number of Pairs: ' + (numPairs+1));
 
     for(var i = 0; i <= numPairs; i++) {
       var pair = [
@@ -25,7 +27,7 @@ server.get('/pairs', function (req, res, next) {
 
   res.write('[');
 
-  for(var i = 0; i < 100; i++) {
+  for(var i = 0; i < 25; i++) {
     var seconds = Math.floor(((Math.random()*10000)%3000)+1000);
     console.log('Waiting: ' + seconds);
 
