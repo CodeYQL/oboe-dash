@@ -26,13 +26,28 @@
       fill: FireBrick;
   }
 
+  #left {
+    float: left;
+  }
+
+  #right {
+    float: right;
+  }
+
   </style>
 </head>
 
 <body>
 
+  <div id="controls">
+    <button onClick="fetchData()">Fetch Data</button>
+    <button onClick="streamData()">Stream Data</button>
+    <button onClick="both()">Both</button>
+  </div>
+
   <div id="container">
-    <svg id="main" width="500" height="500"></svg>
+    <svg id="left" width="600" height="500"></svg>
+    <svg id="right" width="600" height="500"></svg>
   </div>
 
   <!-- bower:js -->
