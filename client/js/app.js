@@ -67,7 +67,7 @@ let right = new Chart('right');
 let api = 'http://localhost:9001/pairs';
 
 let fetchData = () => {
-  fetch(api).then((res) => {
+  return fetch(api).then((res) => {
     return res.json();
   }).then((json) => {
     console.log(json);
@@ -77,11 +77,15 @@ let fetchData = () => {
 
 var buffer = [];
 let streamData = () => {
-  oboe(api)
+  return oboe(api)
     .node('data.*', (node) => {
-      console.log(node);
+      buffer.push(node);
+      right.addData(buffer);
       return oboe.drop;
     })
+    .done(() => {
+      return oboe.drop;
+    });
 };
 
 let both = () => {
