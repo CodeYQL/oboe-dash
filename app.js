@@ -10,6 +10,7 @@ server.get('/pairs', function (req, res, next) {
 
   // Send Header
   res.header('Content-Type', 'application/json');
+  res.header('Access-Control-Allow-Origin', '*');
 
   // Write a number of pairs between 1 and 5 to the response
   // If flag is true, end the communication
@@ -26,7 +27,6 @@ server.get('/pairs', function (req, res, next) {
       ];
 
       // Write the pair
-      console.log(pair);
       res.write(JSON.stringify(pair) + ',');
       numSent++;
 
