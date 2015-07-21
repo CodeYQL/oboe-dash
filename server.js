@@ -21,10 +21,10 @@ server.get('/pairs', function (req, res, next) {
     for(var i = 0; i <= numPairs; i++) {
 
       // Generate the pair
-      var pair = [
-        Math.floor(((Math.random()*1000)%100)+1),
-        Math.floor(((Math.random()*1000)%100)+1)
-      ];
+      var pair = {
+        x: Math.floor(((Math.random()*1000)%100)+1),
+        y: Math.floor(((Math.random()*1000)%100)+1)
+      };
 
       // Write the pair
       res.write(JSON.stringify(pair) + ',');
@@ -32,7 +32,7 @@ server.get('/pairs', function (req, res, next) {
 
       // End if true
       if (flag) {
-        res.write('[0,0]]');
+        res.write('{"x":0, "y": 0}]}');
         res.end();
         console.log('Sent: ' + numSent);
         return next();
@@ -44,7 +44,7 @@ server.get('/pairs', function (req, res, next) {
   }
 
   // Start array of pairs
-  res.write('[');
+  res.write('{ "data": [');
 
   // Queue timeouts
   for(var i = 0; i < 1000; i++) {
@@ -59,4 +59,4 @@ server.get('/pairs', function (req, res, next) {
 });
 
 // Start Server
-server.listen(9000);
+server.listen(9001);
