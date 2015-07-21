@@ -50,18 +50,41 @@ class Chart {
   }
 
   addData(data) {
-  this.chart.selectAll('circle')
-       .data(data)
-       .enter()
-       .append('circle')
-       .attr('cx', (d) => { return this.xRange(d[0]); })
-       .attr('cy', (d) => { return this.yRange(d[1]); })
-       .attr('r', (d) => { return 3; })
-       .style('fill', this.getRandomColor());
+    this.chart.selectAll('circle')
+         .data(data)
+         .enter()
+         .append('circle')
+         .attr('cx', (d) => { return this.xRange(d.x); })
+         .attr('cy', (d) => { return this.yRange(d.y); })
+         .attr('r', (d) => { return 3; })
+         .style('fill', this.getRandomColor());
   }
 }
 
 let left = new Chart('left');
 let right = new Chart('right');
 
-left.addData([[25, 23], [12,38]]);
+let api = 'http://localhost:9001/pairs';
+
+let fetchData = () => {
+  fetch(api).then((res) => {
+    return res.json();
+  }).then((json) => {
+    console.log(json);
+    left.addData(json.data);
+  });
+};
+
+var buffer = [];
+let streamData = () => {
+  oboe(api)
+    .node('data.*', (node) => {
+      console.log(node);
+      return oboe.drop;
+    })
+};
+
+let both = () => {
+  fetchData();
+  streamData();
+};
