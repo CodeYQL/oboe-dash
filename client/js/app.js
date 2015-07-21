@@ -54,8 +54,8 @@ class Chart {
          .data(data)
          .enter()
          .append('circle')
-         .attr('cx', (d) => { return this.xRange(d[0]); })
-         .attr('cy', (d) => { return this.yRange(d[1]); })
+         .attr('cx', (d) => { return this.xRange(d.x); })
+         .attr('cy', (d) => { return this.yRange(d.y); })
          .attr('r', (d) => { return 3; })
          .style('fill', this.getRandomColor());
   }
@@ -64,24 +64,27 @@ class Chart {
 let left = new Chart('left');
 let right = new Chart('right');
 
-var points = [[1,15], [22, 32], [45, 12], [94, 34]];
-var buffer = [];
-
-for (var i = 0; i < points.length; i++) {
-  buffer.push(points[i]);
-  left.addData(buffer);
-}
+let api = 'http://localhost:9001/pairs';
 
 let fetchData = () => {
-  console.log('fetch data');
-  buffer = [];
-  left.addData(buffer);
+  fetch(api).then((res) => {
+    return res.json();
+  }).then((json) => {
+    console.log(json);
+    left.addData(json.data);
+  });
 };
 
+var buffer = [];
 let streamData = () => {
-
+  oboe(api)
+    .node('data.*', (node) => {
+      console.log(node);
+      return oboe.drop;
+    })
 };
 
 let both = () => {
-
+  fetchData();
+  streamData();
 };
