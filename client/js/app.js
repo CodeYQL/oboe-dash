@@ -50,18 +50,38 @@ class Chart {
   }
 
   addData(data) {
-  this.chart.selectAll('circle')
-       .data(data)
-       .enter()
-       .append('circle')
-       .attr('cx', (d) => { return this.xRange(d[0]); })
-       .attr('cy', (d) => { return this.yRange(d[1]); })
-       .attr('r', (d) => { return 3; })
-       .style('fill', this.getRandomColor());
+    this.chart.selectAll('circle')
+         .data(data)
+         .enter()
+         .append('circle')
+         .attr('cx', (d) => { return this.xRange(d[0]); })
+         .attr('cy', (d) => { return this.yRange(d[1]); })
+         .attr('r', (d) => { return 3; })
+         .style('fill', this.getRandomColor());
   }
 }
 
 let left = new Chart('left');
 let right = new Chart('right');
 
-left.addData([[25, 23], [12,38]]);
+var points = [[1,15], [22, 32], [45, 12], [94, 34]];
+var buffer = [];
+
+for (var i = 0; i < points.length; i++) {
+  buffer.push(points[i]);
+  left.addData(buffer);
+}
+
+let fetchData = () => {
+  console.log('fetch data');
+  buffer = [];
+  left.addData(buffer);
+};
+
+let streamData = () => {
+
+};
+
+let both = () => {
+
+};
